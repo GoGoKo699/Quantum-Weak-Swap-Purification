@@ -13,15 +13,15 @@ Both projectors commute with identical unitary rotations of the two data registe
 
 ## One round
 
-Write the stored state before the round as $`\rho_r=rP+(1-r)(I-P)/(d-1)`$, with $`p\le r<1`$. Expanding $`K_u(\rho_r\otimes\sigma)K_u^\dagger`$ and tracing the second qudit gives the unnormalized retained output
+Write the stored state before the round as $`\rho_r=rP+(1-r)(I-P)/(d-1)`$, with $`p\le r\lt 1`$. Expanding $`K_u(\rho_r\otimes\sigma)K_u^\dagger`$ and tracing the second qudit gives the unnormalized retained output
 
 ```math
 (1-u)^2\rho_r+u^2\sigma+u(1-u)(\rho_r\sigma+\sigma\rho_r).
 ```
 
-The identities underlying the cross terms are $`\operatorname{Tr}_2[(A\otimes B)S]=AB`$ and $`\operatorname{Tr}_2[S(A\otimes B)]=BA`$. In particular, the output is still a mixture of $`P`$ and the maximally mixed state orthogonal to $`P`$.
+The identities underlying the cross terms are $`\mathrm{Tr}_2[(A\otimes B)S]=AB`$ and $`\mathrm{Tr}_2[S(A\otimes B)]=BA`$. In particular, the output is still a mixture of $`P`$ and the maximally mixed state orthogonal to $`P`$.
 
-Let $`h=\operatorname{Tr}(\rho_r\sigma)=rp+(1-r)q`$ and $`X=2rs(1-r)`$. Taking the trace and target overlap gives the probability $`D`$ of success and the new target population $`r'`$:
+Let $`h=\mathrm{Tr}(\rho_r\sigma)=rp+(1-r)q`$ and $`X=2rs(1-r)`$. Taking the trace and target overlap gives the probability $`D`$ of success and the new target population $`r'`$:
 
 ```math
 \begin{aligned}
@@ -34,7 +34,7 @@ The gain contains a term linear in small $`u`$, from the cross terms, and a loss
 
 ## Why observing the symmetry sector changes the result
 
-For the symmetric projection alone, $`r'-r`$ has the sign of $`2rs(1-r)-(r-p)`$. This expression is positive at $`r=p`$, negative at $`r=1`$, and vanishes at a unique point $`r_\star`$ between them. The symmetric-branch update is the increasing function $`(r+p+2rp)/(2(1+h))`$, so every iterate starting from $`p`$ stays at or below $`r_\star`$. To see monotonicity, write the function as $`[(1+2p)r+p]/[2(1+q+sr)]`$. The derivative has the sign of $`(1+2p)(1+q)-sp>0`$.
+For the symmetric projection alone, $`r'-r`$ has the sign of $`2rs(1-r)-(r-p)`$. This expression is positive at $`r=p`$, negative at $`r=1`$, and vanishes at a unique point $`r_\star`$ between them. The symmetric-branch update is the increasing function $`(r+p+2rp)/(2(1+h))`$, so every iterate starting from $`p`$ stays at or below $`r_\star`$. To see monotonicity, write the function as $`[(1+2p)r+p]/[2(1+q+sr)]`$. The derivative has the sign of $`(1+2p)(1+q)-sp\gt 0`$.
 
 If the symmetry sector is recorded and used to accept with different probabilities, the two normalized target populations are
 

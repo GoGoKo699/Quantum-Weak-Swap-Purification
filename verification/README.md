@@ -16,4 +16,4 @@ With input signal weight 0.8 and target infidelity 0.01, the script gives the fo
 | 16 | 30 | 47.0813 | 1,484 |
 | 1,000,000 | 33 | 53.3002 | 98,999,900 |
 
-A dimension grid at input weights 0.65 and 0.8 checks scaled cost against the analytic asymptotic coefficient. These calculations illustrate the ideal protocol and its analytic bounds. The dimension-uniform result follows from the proof, and the table contains no hardware measurements.
+A dimension grid at input weights 0.65 and 0.8 checks scaled cost against the analytic asymptotic coefficient. A separate calculation checks the storage-noise floor in dimension 16 at a per-stage depolarization of one part in one hundred million. These calculations illustrate the model and its analytic bounds. The dimension-uniform result follows from the proof. The table reports numerical model values.

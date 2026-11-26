@@ -60,7 +60,7 @@ successful stages of that attempt. [Renewal cost](../science/sample-cost.md)
 
 ## Why the filter weakens
 
-For $`r>p`$, the conditional gain contains a positive term
+For $`r\gt p`$, the conditional gain contains a positive term
 proportional to $`u(1-u)r(1-r)`$ and a loss term proportional to
 $`u^2(r-p)`$. The factor $`1-r`$ shrinks as the stored state
 approaches the target, while $`r-p`$ stays positive. Letting

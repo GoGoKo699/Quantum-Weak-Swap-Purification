@@ -137,8 +137,24 @@ def check_accuracy_scaling():
     print("Scaled cost agrees with the predicted coefficient across the dimension grid.")
 
 
+def check_storage_floor():
+    dimension, weight, noise = 16, 0.8, 1e-8
+    fresh = weight + (1 - weight) / dimension
+    predicted = math.sqrt((1 - 1 / dimension) * (1 - fresh)) / weight
+    retained = fresh
+    for _ in range(80_000):
+        exchange = 2 * retained * weight * (1 - retained)
+        strength = exchange / (2 * (exchange + retained - fresh))
+        _, gain = transition(retained, weight, dimension, strength)
+        retained = (1 - noise) * (retained + gain) + noise / dimension
+    scaled_infidelity = (1 - retained) / math.sqrt(noise)
+    assert math.isclose(scaled_infidelity, predicted, rel_tol=0.002)
+    print(f"Storage-floor check: {scaled_infidelity:.6f} versus predicted {predicted:.6f}.")
+
+
 if __name__ == "__main__":
     check_filter()
     check_strong_projection()
     check_restart_examples()
     check_accuracy_scaling()
+    check_storage_floor()

@@ -4,7 +4,7 @@ A measure-and-prepare protocol receives copies, collects a classical transcript 
 
 ## The per-transcript bound
 
-First allow access to ideal pure copies of $`|\psi\rangle`$ drawn from the invariant Haar distribution. A completed transcript stopping at $`n`$ copies has an effect $`E`$ on those copies. Its probability on input $`\psi`$ is $`\operatorname{Tr}(E P^{\otimes n})`$ for $`P=|\psi\rangle\langle\psi|`$. Adaptivity is included in the effect, which can be viewed as part of a joint instrument on the first $`n`$ inputs.
+First allow access to ideal pure copies of $`|\psi\rangle`$ drawn from the invariant Haar distribution. A completed transcript stopping at $`n`$ copies has an effect $`E`$ on those copies. Its probability on input $`\psi`$ is $`\mathrm{Tr}(E P^{\otimes n})`$ for $`P=|\psi\rangle\langle\psi|`$. Adaptivity is included in the effect, which can be viewed as part of a joint instrument on the first $`n`$ inputs.
 
 Let $`\Pi_n`$ be the symmetric projector on $`n`$ qudits, and $`D_n=\binom{n+d-1}{d-1}`$ its rank. The unweighted Haar average of the input is $`\Pi_n/D_n`$. For a pure guess $`|\phi\rangle`$, the overlap-weighted moment is
 
