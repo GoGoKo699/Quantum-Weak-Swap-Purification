@@ -1,0 +1,24 @@
+# Quantum Weak-Swap Purification
+
+> Purifying an unknown depolarized qudit stream with one persistent data register and a coherent weak SWAP measurement.
+
+## Science
+
+- [Model and results](science/model.md): fixed unknown pure target, known depolarization weight, physical output, persistent and transient quantum storage.
+- [Instrument](science/weak-swap.md): controlled-SWAP circuit, partial trace, update and strong-projection ceiling.
+- [Sample cost](science/sample-cost.md): decreasing strength, success-only trajectory, restart accounting, exact asymptotic coefficient and uniform-in-dimension bound.
+- [Measure and prepare](science/measure-prepare.md): Haar-moment bound per terminal transcript, valid with adaptive stopping.
+- [Storage noise](science/robustness.md): effect of independent depolarization after each accepted step.
+- [Prior work](references/RELATED_WORK.md): attributed primitives and related results.
+
+## Study
+
+- [Milestone map](learning/MILESTONES.md): 30 ordered background and project milestones.
+- [Watrous bridge](learning/WATROUS_BRIDGE.md): one selected anchor, relevant sections and convention changes.
+- [Tutorial](learning/TUTORIAL.md): self-study path and worked example.
+
+## Checks
+
+- [Finite checks](verification/README.md): run python3 verification/check_protocol.py from the repository root.
+
+Use the expected sample cost when comparing copies consumed. Use the number of accepted stages only when discussing the length of a successful coherent prefix. The measure-and-prepare lower bound applies to a final state prepared solely from a classical transcript. The main asymptotic sample statement assumes ideal gates and storage.
