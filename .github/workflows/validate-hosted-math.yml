@@ -1,0 +1,58 @@
+name: Verify hosted mathematics
+
+on:
+  push:
+    branches: [merlin/validate-weak-swap-host]
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CHECKED_SOURCE: c994ef847e2bdf1fb8d11bc0a47c0d12ab244abe
+    steps:
+      - name: Check out the validator
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Check out the immutable scientific source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ env.CHECKED_SOURCE }}
+          path: checked-source
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Install verification dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/hosted-math-runtime" playwright@1.56.1 mathjax-full@3.2.1
+          node "$RUNNER_TEMP/hosted-math-runtime/node_modules/playwright/cli.js" install chromium
+      - name: Compare the GitHub hosted pages with their source
+        run: |
+          export NODE_PATH="$RUNNER_TEMP/hosted-math-runtime/node_modules"
+          node validator/capture_hosted_math.cjs \
+            --root "$GITHUB_WORKSPACE/checked-source" \
+            --repository "$GITHUB_REPOSITORY" --revision "$CHECKED_SOURCE" \
+            --output "$RUNNER_TEMP/hosted-math"
+      - name: Retain rendered pages and pinned report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: hosted-math-c994ef847e2b
+          path: ${{ runner.temp }}/hosted-math
+          if-no-files-found: error
+          retention-days: 14
+      - name: Print the compressed comparison record
+        if: always()
+        run: |
+          if test -f "$RUNNER_TEMP/hosted-math/hosted-report.json"; then
+            sha256sum "$RUNNER_TEMP/hosted-math/hosted-report.json"
+            printf '%s\n' 'START_HOSTED_REPORT_GZIP_BASE64'
+            gzip -n -c "$RUNNER_TEMP/hosted-math/hosted-report.json" | base64
+            printf '%s\n' 'END_HOSTED_REPORT_GZIP_BASE64'
+          fi
