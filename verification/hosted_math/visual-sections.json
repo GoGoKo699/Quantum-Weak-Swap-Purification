@@ -1,0 +1,16 @@
+{
+  "README.md": [
+    "Run the weak SWAP protocol"
+  ],
+  "science/weak-swap.md": [
+    "One round",
+    "Why observing the symmetry sector changes the result"
+  ],
+  "science/sample-cost.md": [
+    "Schedule and accepted trajectory",
+    "Count the failures"
+  ],
+  "learning/TUTORIAL.md": [
+    "Work through the first step"
+  ]
+}
